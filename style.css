@@ -65,6 +65,7 @@ button:active {
     order: 2;
     transition: left 0.3s ease, top 0.3s ease;
     z-index: 999;
+    white-space: nowrap;
 }
 
 @media (max-width: 600px) {

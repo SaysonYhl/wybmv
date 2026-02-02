@@ -14,7 +14,24 @@ const imagePaths = [
     "images/final_question.gif"
 ];
 
+// New array for the "No" button teasing
+const noMessages = [
+    "No 😢",
+    "Are you sure? 🤨",
+    "Piliin mong mabuti... 🥺",
+    "Bawal to pindutin! 🚫",
+    "Kulit mo ha 😂",
+    "Click mo na yung yes! 💖",
+    "Uy, wag nga ito! 🙈",
+    "Luh, ayaw talaga? 🥀",
+    "Hmmppp! 😤",
+    "Yes na nganii 😑",
+    "Ihhhh 😣",
+    "Sige naaaa, Miraa 😖"
+];
+
 let currentIndex = 0;
+let noIndex = 0; // Track the "No" text index
 
 const textDisplay = document.getElementById("textDisplay");
 const nextButton = document.getElementById("nextButton");
@@ -23,7 +40,7 @@ const noButton = document.getElementById("noButton");
 const yesButton = document.getElementById("yesButton");
 const imageDisplay = document.getElementById("imageDisplay");
 
-// Function to move the "No" button
+// Function to move the "No" button AND change its text
 function moveButton() {
     const padding = 50; 
     const maxX = window.innerWidth - noButton.offsetWidth - padding;
@@ -35,6 +52,10 @@ function moveButton() {
     noButton.style.position = "fixed";
     noButton.style.left = `${x}px`;
     noButton.style.top = `${y}px`;
+
+    // Cycle through noMessages
+    noIndex = (noIndex + 1) % noMessages.length;
+    noButton.textContent = noMessages[noIndex];
 }
 
 // Next Button Logic
@@ -42,7 +63,6 @@ nextButton.addEventListener("click", () => {
     currentIndex++;
 
     if (currentIndex < messages.length) {
-        // We use innerHTML and replace \n with <br> so your line breaks work
         textDisplay.innerHTML = messages[currentIndex].replace(/\n/g, "<br>");
         imageDisplay.src = imagePaths[currentIndex];
     }
@@ -56,13 +76,13 @@ nextButton.addEventListener("click", () => {
 // "No" Button Logic (Mouse for Desktop, Touch for Mobile)
 noButton.addEventListener("mouseover", moveButton);
 noButton.addEventListener("touchstart", (e) => {
-    e.preventDefault(); // This stops the phone from actually clicking the button
+    e.preventDefault(); 
     moveButton();
 });
 
 // "Yes" Button Logic
 yesButton.addEventListener("click", () => {
-    imageDisplay.src = "celebrate.gif"; 
+    imageDisplay.src = "images/celebrate.gif"; 
     textDisplay.innerHTML = "YEEEYYY! <br> I love you, Mira koooo! <br> 💖🤗";
     finalButtons.style.display = "none";
 
