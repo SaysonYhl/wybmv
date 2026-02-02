@@ -62,7 +62,7 @@ noButton.addEventListener("touchstart", (e) => {
 
 // "Yes" Button Logic
 yesButton.addEventListener("click", () => {
-    imageDisplay.src = "images/1620558667_65792_gif-url.gif"; 
+    imageDisplay.src = "celebrate.gif"; 
     textDisplay.innerHTML = "YEEEYYY! <br> I love you, Mira koooo! <br> 💖🤗";
     finalButtons.style.display = "none";
 
